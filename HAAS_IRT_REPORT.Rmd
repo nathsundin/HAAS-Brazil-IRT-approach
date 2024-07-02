@@ -1,0 +1,155 @@
+---
+title: "HAAS_IRT_REPORT"
+output: html_document
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+library(mokken)
+library(mirt)
+```
+
+
+```{r}
+HAAS <- readRDS("HAAS.rds")
+HAAS <- as.data.frame(HAAS)
+df <- HAAS
+head(df)
+```
+
+# Dimensionality
+
+```{r}
+aisp1 <- aisp(df, search = 'normal', lowerbound=seq(.3,.8,by=.05))
+aisp1
+aisp2 <- aisp(df, search = 'ga', lowerbound=seq(.3,.8,by=.05))
+aisp2
+
+```
+
+# Scalability
+
+```{r}
+H <- coefH(df)
+```
+
+# Minsize
+
+The parameter below will determine the minimum size of the "rest groups" for tests of monotonicity, order invariance, local independence, etc.
+
+If it is too large, it will not allow the construction of at least 2 groups, compromising the methods. If it is too small, it generates less reliable statistics.
+
+From attempts we arrived at the value of 40.
+```{r}
+minsize <- 40
+```
+
+# Monotonicity
+
+```{r}
+monotonicity_test <- check.monotonicity(df, minsize = minsize)
+summary(monotonicity_test)
+```
+
+```{r}
+plot(monotonicity_test)
+```
+
+# IIO
+
+```{r}
+check.iio.test <- check.iio(
+  df, 
+  method = "MIIO", 
+  minsize = minsize, 
+  verbose = FALSE, 
+  item.selection = FALSE,
+)
+summary(check.iio.test)
+```
+
+```{r}
+par(mfrow=c(2,3))
+plot(check.iio.test)
+```
+
+# Local Independence
+
+```{r}
+IL <- check.ca(df, Windex=T, MINSIZE=minsize)
+IL$InScale
+summary(IL)
+```
+
+## Reliability
+
+```{r}
+check.reliability(
+  df,
+  MS = TRUE,
+  alpha = TRUE,
+  lambda.2 = TRUE,
+  LCRC = TRUE
+)
+```
+
+# Parametric Model
+
+```{r}
+fitGraded <- mirt(df, 1, itemtype = "graded", SE = FALSE, verbose = TRUE)
+summary(fitGraded)
+```
+
+```{r}
+theta <- fscores(fitGraded, full.scores.SE = TRUE)
+empirical_rxx(theta)
+```
+
+## M2
+
+```{r}
+M2(fitGraded, type = "C2", calcNULL = FALSE)
+```
+
+## Itemfit
+
+```{r}
+itemfit(fitGraded, p.adjust = 'fdr')
+```
+
+## Item Parameters
+
+```{r}
+params <- coef(fitGraded, IRTpars = TRUE, simplify = TRUE)
+round(params$items, 2)
+```
+
+## Empirical CCI
+
+```{r}
+CCI_empirica <- lapply(
+  1:ncol(df), 
+  function(x) itemfit(fitGraded, empirical.plot = x)
+)
+CCI_empirica
+```
+
+## Trace Plot
+
+```{r}
+plot(fitGraded, type = 'trace')
+```
+
+## Info Plot
+
+```{r}
+plot(fitGraded, type = "infoSE")
+plot(fitGraded, type = 'infotrace')
+```
+
+# Citation
+
+```{r}
+citation('mokken')
+citation('mirt')
+```
