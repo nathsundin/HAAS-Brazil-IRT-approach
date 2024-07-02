@@ -3,4 +3,4 @@ HAAS-Brasil evaluation using Mokken Scale Analysis and Samejima's Graded Respons
 
 Factor Analysis was performed in Jamovi version 2.3 (AFE_AFC_PCA.sav.html)
 
-HAAS.rds is the data file for reproducibility.
+HAAS.rds is the blinded data file for reproducibility.
