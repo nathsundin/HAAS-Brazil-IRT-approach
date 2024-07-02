@@ -2,6 +2,11 @@ HAAS_IRT_REPORT
 ================
 
 ``` r
+library(mokken)
+library(mirt)
+```
+
+``` r
 HAAS <- readRDS("HAAS.rds")
 HAAS <- as.data.frame(HAAS)
 df <- HAAS
@@ -96,7 +101,7 @@ summary(monotonicity_test)
 plot(monotonicity_test)
 ```
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-6-3.png)<!-- -->![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-6-4.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-7-3.png)<!-- -->![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-7-4.png)<!-- -->
 
 # IIO
 
@@ -136,7 +141,7 @@ par(mfrow=c(2,3))
 plot(check.iio.test)
 ```
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 # Local Independence
 
@@ -179,7 +184,7 @@ check.reliability(
     ## [1] 0.6800608
     ## 
     ## $LCRC
-    ## [1] 0.6692785
+    ## [1] 0.6679206
 
 # Parametric Model
 
@@ -261,22 +266,22 @@ CCI_empirica
 
     ## [[1]]
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
     ## 
     ## [[2]]
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-16-2.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
 
     ## 
     ## [[3]]
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-16-3.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-17-3.png)<!-- -->
 
     ## 
     ## [[4]]
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-16-4.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-17-4.png)<!-- -->
 
 ## Trace Plot
 
@@ -284,7 +289,7 @@ CCI_empirica
 plot(fitGraded, type = 'trace')
 ```
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 ## Info Plot
 
@@ -292,13 +297,13 @@ plot(fitGraded, type = 'trace')
 plot(fitGraded, type = "infoSE")
 ```
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 ``` r
 plot(fitGraded, type = 'infotrace')
 ```
 
-![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-18-2.png)<!-- -->
+![](HAAS_IRT_REPORT_files/figure-gfm/unnamed-chunk-19-2.png)<!-- -->
 
 # Citation
 

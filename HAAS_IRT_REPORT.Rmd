@@ -5,6 +5,9 @@ output: github_document
 
 ```{r setup, include=FALSE} 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+```{r}
 library(mokken)
 library(mirt)
 ```
