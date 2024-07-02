@@ -10,6 +10,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```{r}
 library(mokken)
 library(mirt)
+packageVersion("mokken")
+packageVersion("mirt")
 ```
 
 

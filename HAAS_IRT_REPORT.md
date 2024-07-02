@@ -4,7 +4,16 @@ HAAS_IRT_REPORT
 ``` r
 library(mokken)
 library(mirt)
+packageVersion("mokken")
 ```
+
+    ## [1] '3.1.1'
+
+``` r
+packageVersion("mirt")
+```
+
+    ## [1] '1.41'
 
 ``` r
 HAAS <- readRDS("HAAS.rds")
@@ -184,7 +193,7 @@ check.reliability(
     ## [1] 0.6800608
     ## 
     ## $LCRC
-    ## [1] 0.6679206
+    ## [1] 0.6692785
 
 # Parametric Model
 
